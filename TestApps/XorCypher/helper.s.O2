@@ -1,0 +1,154 @@
+
+
+
+	.global udivmodhi4
+	.type udivmodhi4, @function
+udivmodhi4:
+	nop
+	nop
+	mov	r12,	r15	;
+
+	mov.b	#17,	r12	;#0x0011
+
+	mov.b	#1,	r11	;r3 As==01
+
+.L2:
+	cmp	r15,	r13	;
+	jc	.L5     	;abs 0x448c
+	add	#-1,	r12	;r3 As==11
+
+	cmp	#0,	r12	;r3 As==00
+	jz	.L7     	;abs 0x4492
+
+	cmp	#0,	r13	;r3 As==00
+	jge	.L9     	;abs 0x449a
+
+.L5:
+	clr.b	r12		;
+
+.L6:
+	cmp	#0,	r11	;r3 As==00
+	jnz	.L11     	;abs 0x44a2
+
+.L7:
+	cmp	#0,	r14	;r3 As==00
+	jz	.L8      	;abs 0x4498
+	mov	r15,	r12	;
+
+.L8:
+	reta			;
+
+.L9:
+	rla	r13		;
+
+	rla	r11		;
+	jmp .L2	;mova	#17534,	r0	;0x0447e
+
+.L11:
+	cmp	r13,	r15	;
+	jnc	.L14      	;abs 0x44aa
+
+	sub	r13,	r15	;
+
+	bis	r11,	r12	;
+
+.L14:
+	rrum	#1,	r11	;
+
+	rrum	#1,	r13	;
+	jmp .L6	;mova	#17550,	r0	;0x0448e
+
+
+
+	.global __mspabi_remi
+	.type __mspabi_remi, @function
+__mspabi_remi:
+	nop
+	nop
+	pushm.a	#1,	r10	;20-bit words
+
+	cmp	#0,	r12	;r3 As==00
+	jge	.L25     	;abs 0x44de
+
+	clr.b	r14		;
+	sub	r12,	r14	;
+	mov	r14,	r12	;
+
+	mov.b	#1,	r10	;r3 As==01
+
+.L19:
+	cmp	#0,	r13	;r3 As==00
+	jge	.L20      	;abs 0x44ca
+	clr.b	r14		;
+	sub	r13,	r14	;
+	mov	r14,	r13	;
+
+.L20:
+	mov.b	#1,	r14	;r3 As==01
+	calla	#udivmodhi4		;0x04476
+
+	cmp	#0,	r10	;r3 As==00
+	jz	.L23      	;abs 0x44da
+
+	clr.b	r13		;
+	sub	r12,	r13	;
+	mov	r13,	r12	;
+
+.L23:
+	popm.a	#1,	r10	;20-bit words
+
+	reta			;
+
+.L25:
+	clr.b	r10		;
+	jmp .L19	;mova	#17600,	r0	;0x044c0
+
+
+
+	.global _exit
+	.type _exit, @function
+_exit:
+	nop
+	nop
+	jmp _exit	;mova	#17636,	r0	;0x044e4
+
+    
+
+
+	.global memcpy
+	.type memcpy, @function
+memcpy:
+	nop
+	nop
+	pushm.a	#1,	r10	;20-bit words
+
+	pushm.a	#1,	r8	;20-bit words
+
+	mova	r12,	r8	;
+	mova	r14,	r15	;
+
+	clr.b	r12		;
+
+.L29:
+	cmpa	r12,	r15	;
+	jnz	.L34     	;abs 0x4638
+
+	mova	r8,	r12	;
+
+	popm.a	#1,	r8	;20-bit words
+
+	popm.a	#1,	r10	;20-bit words
+
+	reta			;
+
+.L34:
+	mova	r8,	r14	;
+	adda	r12,	r14	;
+
+	mova	r13,	r10	;
+	adda	r12,	r10	;
+
+	mov.b	@r10,	0(r14)	;
+	adda	#1,	r12	;
+
+	jmp .L29	;mova	#17964,	r0	;0x0462c
