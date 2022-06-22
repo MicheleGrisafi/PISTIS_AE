@@ -1,0 +1,1 @@
+"./core.o" "./main.o" "./protected_isr.o" "./raHelperAsm.o" "./secureContextSwitch.o" "./secureUpdate.o" "./virt_fun.o" "./ra/Hacl_HASH.o" "./ra/Hacl_HMAC.o" "./ra/ra.o" -T"../msp430f5529.ld" -Wl,--start-group -lgcc -lc -Wl,--end-group 
