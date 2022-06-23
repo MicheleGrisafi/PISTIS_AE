@@ -145,7 +145,8 @@ for f in sys.argv[2:]:
 
         modifiedMain.write(newEntry)
         line = input.readline()
-    
+    input.close()
+    modifiedMain.close()
     #Overwrite file
     os.rename(inputName+".tmp",inputName)
 
@@ -171,6 +172,8 @@ for f in sys.argv[2:]:
         modifiedMain.write(newEntry)
         line = input.readline()
     
+    input.close()
+    modifiedMain.close()
     #Overwrite file
     os.rename(inputName+".tmp",inputName)
 
@@ -266,6 +269,8 @@ for f in sys.argv[2:]:
         modifiedMain.write(newEntry)
         line = input.readline()
     
+    input.close()
+    modifiedMain.close()
     #Overwrite file
     os.rename(inputName+".tmp",inputName)
 
@@ -299,6 +304,8 @@ for f in sys.argv[2:]:
         modifiedMain.write(newEntry)
         line = input.readline()
     
+    input.close()
+    modifiedMain.close()
     #Overwrite file
     os.rename(inputName+".tmp",inputName)
 
@@ -308,7 +315,7 @@ for f in sys.argv[2:]:
 for f in sys.argv[2:]:
     inputName = f
     input = open(inputName, 'r')
-    logging.debug("Parsing file {}".format(inputName))
+    logging.debug("Parsing file {} for illegal instructions".format(inputName))
 
     cnt = 1
     line = input.readline()
